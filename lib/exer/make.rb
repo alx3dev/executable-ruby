@@ -8,6 +8,9 @@ module Exer
   class Make
     include Template
 
+    GO = File.expand_path(__FILE__)
+         .gsub('lib/exer/make.rb', 'go/bin/go').freeze
+
     attr_reader :file
     attr_accessor :filename
 
@@ -33,9 +36,9 @@ module Exer
       @main += Finalize_Main unless @main.include?(Finalize_Main)
       go_file = @file + @main
       File.write "#{filename}_install.go", go_file
-      system "GOOS=linux go build -o #{filename} #{filename}_install.go" unless Array(exclude).include?(:linux)
-      system "GOOS=windows go build -o #{filename}.exe #{filename}_install.go" unless Array(exclude).include?(:windows)
-      system "GOOS=darwin go build -o #{filename}.app #{filename}_install.go" unless Array(exclude).include?(:darwin)
+      system "GOOS=linux #{GO} build -o #{filename} #{filename}_install.go" unless Array(exclude).include?(:linux)
+      system "GOOS=windows #{GO} build -o #{filename}.exe #{filename}_install.go" unless Array(exclude).include?(:windows)
+      system "GOOS=darwin #{GO} build -o #{filename}.app #{filename}_install.go" unless Array(exclude).include?(:darwin)
       File.delete "#{filename}_install.go"
     end
 
