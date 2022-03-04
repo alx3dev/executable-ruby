@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
     Require golang installed.
   DESC
 
-  spec.homepage = "https://www.github.com/alx3dev/exer"
+  spec.homepage = "https://www.github.com/alx3dev/executable-ruby"
   spec.license = "GPLv3"
   spec.required_ruby_version = ">= 2.7.5"
 
