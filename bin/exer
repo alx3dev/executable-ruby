@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# Copyright (C) 2022  Aleksandar Subasic
+# frozen_string_literal: true
+
+require_relative "../lib/exer"
+
+require "irb"
+IRB.start(__FILE__)
