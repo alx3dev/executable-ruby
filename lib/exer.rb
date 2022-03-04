@@ -5,10 +5,10 @@ require_relative 'exer/version'
 require_relative 'exer/make'
 
 module Exer
-  def self.make(filename = nil)
-    maker = Exer::Make.new(filename)
+  def self.make(opts = {})
+    maker = Exer::Make.new(opts[:filename])
     maker.add_defaults
     yield(maker) if block_given?
-    maker.make
+    maker.make opts[:exclude]
   end
 end
