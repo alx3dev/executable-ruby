@@ -21,10 +21,15 @@ exer --setup
 ```
 
 # How to use
-Golang is bundled together with gem, so you can just run it with:
 
+Golang is bundled together with gem, so you can just run it with:
 ```
 bin/exer
+```
+
+or if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby)
+```
+exer
 ```
 
 
