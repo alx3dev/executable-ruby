@@ -1,8 +1,10 @@
 # executable-ruby
 Cross-compile executables for gem-install process
 
+A Work In Progress...
+
 # How to use
-Install golang
+Install golang. Future plans are to build everything together, to avoid go-lang requirement.
 
 ```ruby
 bin/exer
