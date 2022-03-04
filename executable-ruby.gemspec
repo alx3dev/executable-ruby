@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   DESC
 
   spec.homepage = "https://www.github.com/alx3dev/exer"
-  spec.license = "Apache2"
+  spec.license = "GPLv3"
   spec.required_ruby_version = ">= 2.7.5"
 
   spec.metadata["homepage_uri"] = spec.homepage
