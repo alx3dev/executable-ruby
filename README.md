@@ -1,13 +1,39 @@
 # executable-ruby
+
 Cross-compile executables for gem-install process
 
-A Work In Progress...
+# How to install
+
+To keep github repository lightweight, download `golang` on first start. You can call `bin/setup`, or `exer init` if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby)
+
+Download and install gem from github:
+
+```
+git clone https://www.githib.com/alx3dev/executable-ruby \
+cd executable-ruby \
+bin/setup
+```
+If you install gem from ruby-gems, you can run:
+
+```
+gem install executable-ruby \
+exer --setup
+```
 
 # How to use
-Install golang. Future plans are to build everything together, to avoid go-lang requirement.
+
+Golang is bundled together with gem, so you can just run it with:
+```
+bin/exer
+```
+
+or if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby)
+```
+exer
+```
+
 
 ```ruby
-bin/exer
 
 Exer.make(filename: 'glimmer-install', exclude: :darwin) do |x|
   x.add :gem_install, 'glimmer-dsl-libui'

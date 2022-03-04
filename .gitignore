@@ -10,3 +10,4 @@
 *.lock
 .ruby-version
 *.*~
+go/

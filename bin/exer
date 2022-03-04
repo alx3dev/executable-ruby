@@ -4,5 +4,11 @@
 
 require_relative "../lib/exer"
 
-require "irb"
-IRB.start(__FILE__)
+if ARGV[0] == '--setup'
+  dir = File.expand_path(__FILE__).gsub('/bin/exer', '')
+  Dir.chdir dir
+  system 'bin/setup'
+else
+  require "irb"
+  IRB.start(__FILE__)
+end

@@ -5,4 +5,7 @@ set -vx
 
 bundle install
 
-# Do any other automated setup that you need to do here
+# download golang for linux
+wget https://go.dev/dl/go1.17.8.linux-amd64.tar.gz
+tar -xzf go1.17.8.linux-amd64.tar.gz
+rm go1.17.8.linux-amd64.tar.gz
