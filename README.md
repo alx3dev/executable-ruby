@@ -21,3 +21,6 @@ Exer.make do |app|
   app.add :gem_install, 'glimmer-dsl-libui'
 end
 ```
+
+# Contribution
+This is a work in progress, so please wait to establish some more stable version.
