@@ -4,7 +4,7 @@ Cross-compile executables for gem-install process
 
 # How to install
 
-To keep github repository lightweight, download `golang` on first start. You can call `bin/setup`, or `exer init` if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby)
+To keep github repository lightweight, download `golang` on first start. You can either call `bin/setup`, or `exer --setup` if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby)
 
 Download and install gem from github:
 
