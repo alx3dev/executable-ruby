@@ -1,14 +1,15 @@
 #!/usr/bin/env ruby
-# Copyright (C) 2022  Aleksandar Subasic
 # frozen_string_literal: true
 
-require_relative "../lib/exer"
+# Copyright (C) 2022  Aleksandar Subasic
+
+require_relative '../lib/exer'
 
 if ARGV[0] == '--setup'
   dir = File.expand_path(__FILE__).gsub('/bin/exer', '')
   Dir.chdir dir
   system 'bin/setup'
 else
-  require "irb"
+  require 'irb'
   IRB.start(__FILE__)
 end
