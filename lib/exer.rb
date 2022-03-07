@@ -5,7 +5,7 @@
 require_relative 'exer/version'
 require_relative 'exer/make'
 
-# Build executables to install your gem on Win, Linux and Mac.
+# Build executable gem installers for Windows, Linux and Mac.
 # Go language is bundled together within the app,
 # so all you need is linux and ruby.
 #
