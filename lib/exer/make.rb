@@ -32,6 +32,9 @@ module Exer
     # Prepare go file - give it a name and import packages.
     # This is also a name of final binaries.
     #
+    # @example
+    #   exer = Exer::Make.new 'my_gem_name'
+    #
     # @param [String] filename **Required**. Name of executables.
     #
     def initialize(filename)
@@ -64,6 +67,9 @@ module Exer
     # @see Template::FUNCTION
     # @see Template::MAIN_FUNCTION
     #
+    # @example
+    #   exer.add :gem_install, 'my_gem_name'
+    #
     # @param [Symbol] function **Required**. Function name from ::Template.
     # @param [String] arg Optional. For functions that require argument (like gem install).
     #
@@ -95,8 +101,7 @@ module Exer
       false
     end
 
-    # Add functions that we always need.
-    # This method is mostly for testing purposes.
+    # Add functions that we always need, and check if ruby is installed.
     #
     def add_defaults
       %i[binary_exist ruby_exist ruby_exec gem_install].each do |x|
@@ -127,6 +132,7 @@ module Exer
     def write_go_source_code(without_wait = nil)
       go_file = @functions + @main
       go_file += WAIT_FOR_ENTER_TO_EXIT unless without_wait
+      go_file += "\n}"
       File.write "#{filename}_install.go", go_file
     end
 

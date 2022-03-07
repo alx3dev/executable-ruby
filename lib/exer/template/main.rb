@@ -24,6 +24,5 @@ module Template
 
       	var reader = bufio.NewReader(os.Stdin)
       	reader.ReadString('\\n')
-      }
     CODE
 end
