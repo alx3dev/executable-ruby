@@ -7,16 +7,13 @@
 # that run it.
 #
 module Template
-  # make private to avoid yard generation
-  private
-
-  Go_Packages =
+  GO_PACKAGES =
     <<~CODE
       package main
       import ("bufio"; "bytes"; "fmt"; "os"; "os/exec")
     CODE
 
-  Ruby_Exist =
+  RUBY_EXIST =
     <<~CODE
       func RubyExist() (string, error) {
         rbin, rerr := BinaryExist("ruby")
@@ -32,7 +29,7 @@ module Template
       }
     CODE
 
-  Ruby_Exec =
+  RUBY_EXEC =
     <<~CODE
       func RubyExec(command string) (string, string, error) {
         var stdout bytes.Buffer
@@ -56,7 +53,7 @@ module Template
       }
     CODE
 
-  Gem_Install =
+  GEM_INSTALL =
     <<~CODE
       func GemInstall(gem string) (string, string, error) {
         _, gerr := BinaryExist("gem")
@@ -83,7 +80,7 @@ module Template
       }
     CODE
 
-  Binary_Exist =
+  BINARY_EXIST =
     <<~CODE
       func BinaryExist(binary string) (string, error) {
         path, err := exec.LookPath(binary)
@@ -96,15 +93,12 @@ module Template
       }
     CODE
 
-  # generate yard doc for ruby code
-  public
-
-  # Predefined functions in golang. go_packages is always first.
+  # Predefined functions in golang. go_packages always go first.
   FUNCTION = {
-    go_packages: Go_Packages,
-    ruby_exist: Ruby_Exist,
-    binary_exist: Binary_Exist,
-    ruby_exec: Ruby_Exec,
-    gem_install: Gem_Install
+    go_packages: GO_PACKAGES,
+    binary_exist: BINARY_EXIST,
+    ruby_exist: RUBY_EXIST,
+    ruby_exec: RUBY_EXEC,
+    gem_install: GEM_INSTALL
   }.freeze
 end

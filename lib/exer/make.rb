@@ -6,6 +6,10 @@ require_relative 'template/functions'
 require_relative 'template/main'
 
 module Exer
+  # Make class handle all the logic that we need to make binaries.
+  # Functions are written to the file and removed after go build.
+  # By default all three platforms are used, but you can also exclude each of them.
+  #
   class Make
     include Template
 
@@ -16,11 +20,17 @@ module Exer
     # allowed platforms to build binaries
     PLATFORMS = %i[linux darwin windows].freeze
 
-    attr_reader :functions, :main
+    # Defined functions in go file
+    attr_reader :functions
+
+    # Defined functions to execute in go-main
+    attr_reader :main
+
+    # Name of final binaries
     attr_accessor :filename
 
     # Prepare go file - give it a name and import packages.
-    # This is also a name of final executables.
+    # This is also a name of final binaries.
     #
     # @param [String] filename **Required**. Name of executables.
     #
@@ -37,6 +47,9 @@ module Exer
     # @see Template::FUNCTION
     # @see Template::MAIN_FUNCTION
     #
+    # @example Define function gem_install
+    #   exer.add_function :gem_install
+    #
     # @param [Symbol] function_name **Required**. Name of Template::FUNCTION.
     # @return [String]
     #
@@ -46,7 +59,6 @@ module Exer
     end
 
     # Add previously defined function to go-main, to be executed.
-    # Functions are defined in ::Template.
     #
     # @see Template
     # @see Template::FUNCTION
@@ -63,14 +75,20 @@ module Exer
       @main += "\n#{func}"
     end
 
-    # Build executable for platforms we want.
+    # Make executable for platforms we want.
     # Functions are written to the file, built into binaries, and file is removed.
     #
-    # @param [Symbol] exclude_platforms Optional. Platforms to exclude when making binaries. Write as array of symbols.
+    # @example Build for Windows, Linux, Mac
+    #   exer.build do |x|
+    #     x.add_defaults
+    #     x.add :gem_install, 'my-gem-name'
+    #   end
+    #
+    # @param [Symbol] exclude Optional. Platforms to exclude when making binaries. Also accept array of symbols.
     # @return [Boolean]
     #
-    def make(exclude_platforms = nil)
-      build_executables exclude_platforms
+    def build(exclude = nil)
+      build_executables exclude
       true
     rescue StandardError => e
       puts e.message
@@ -93,7 +111,6 @@ module Exer
       write_go_source_code
 
       PLATFORMS.each do |platform|
-
         # 3.1 => next if platform in Array(without_platforms)
         next if Array(without_platforms).include? platform
 
@@ -102,18 +119,20 @@ module Exer
                     when :darwin  then '.app'
                     end
 
-        build(platform, extension)
+        go_build(platform, extension)
       end
       File.delete "#{filename}_install.go"
     end
 
-    def write_go_source_code
-      go_file = @functions + @main + WAIT_FOR_ENTER_TO_EXIT
+    def write_go_source_code(without_wait = nil)
+      go_file = @functions + @main
+      go_file += WAIT_FOR_ENTER_TO_EXIT unless without_wait
       File.write "#{filename}_install.go", go_file
     end
 
-    def build(os, ext = nil)
-      system "GOOS=#{os} #{GO} build -o #{filename}#{ext} #{filename}_install.go"
+    # don't overwrite gem files - append _install to the name of go file
+    def go_build(os, ext = nil)
+      system "GOOS=#{os} #{GO} build -o #{filename}_install#{ext} #{filename}_install.go"
     end
   end
 end

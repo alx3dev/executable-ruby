@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   DESC
 
   spec.homepage = 'https://www.github.com/alx3dev/executable-ruby'
-  spec.license = 'GPLv3'
+  spec.license = 'GPL-3.0'
   spec.required_ruby_version = '>= 2.7.5'
 
   spec.metadata['homepage_uri'] = spec.homepage
@@ -30,9 +30,17 @@ Gem::Specification.new do |spec|
     lib/exer/version.rb
     lib/exer/template/functions.rb
     lib/exer/template/main.rb
+    README.md
+    Gemfile
+    executable-ruby.gemspec
+    LICENSE
+    CHANGELOG.md
   ]
 
   spec.bindir = 'bin'
   spec.executables = %w[exer setup]
   spec.require_paths = ['lib']
+
+  spec.add_development_dependency 'bundler', '~> 2.3'
+  spec.add_development_dependency 'rake', '~> 13.0'
 end

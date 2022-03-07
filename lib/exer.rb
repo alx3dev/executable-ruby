@@ -20,6 +20,6 @@ module Exer
     maker = Exer::Make.new(opts[:filename])
     maker.add_defaults
     yield(maker) if block_given?
-    maker.make opts[:exclude]
+    maker.build opts[:exclude]
   end
 end

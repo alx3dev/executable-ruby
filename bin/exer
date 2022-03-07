@@ -5,7 +5,10 @@
 
 require_relative '../lib/exer'
 
-if ARGV[0] == '--setup'
+# On first start, call with --getgo argument, to download go language
+# Golang will be bundled with gem, and removed on gem uninstall
+#
+if ARGV[0] == '--getgo'
   dir = File.expand_path(__FILE__).gsub('/bin/exer', '')
   Dir.chdir dir
   system 'bin/setup'
