@@ -1,11 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 IFS=$'\n\t'
-set -vx
 
 bundle install
 
+function on_linux() {
+  sudo apt install wget -y 
+}
+
+function on_mac() {
+  sudo brew install wget
+}
+
+function install() {
+  echo -e -n "Type 'm' for Mac, any key for linux (m/M): "
+  read mac_key
+  if [ "$mac_key" == "m" ] || [ "$mac_key" == "M" ]; then
+    on_mac; else
+    on_linux
+  fi
+}
+
 # download golang for linux
+if !(command -v wget) >/dev/null 2>&1; then
+  echo "wget library not found on the system"
+  echo "choose your OS to install wget"
+  install
+fi
+
 wget https://go.dev/dl/go1.17.8.linux-amd64.tar.gz
 tar -xzf go1.17.8.linux-amd64.tar.gz
 rm go1.17.8.linux-amd64.tar.gz

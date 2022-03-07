@@ -1,14 +1,18 @@
 #!/usr/bin/env ruby
-# Copyright (C) 2022  Aleksandar Subasic
 # frozen_string_literal: true
 
-require_relative "../lib/exer"
+# Copyright (C) 2022  Aleksandar Subasic
 
-if ARGV[0] == '--setup'
+require_relative '../lib/exer'
+
+# On first start, call with --getgo argument, to download go language
+# Golang will be bundled with gem, and removed on gem uninstall
+#
+if ARGV[0] == '--getgo'
   dir = File.expand_path(__FILE__).gsub('/bin/exer', '')
   Dir.chdir dir
   system 'bin/setup'
 else
-  require "irb"
+  require 'irb'
   IRB.start(__FILE__)
 end
