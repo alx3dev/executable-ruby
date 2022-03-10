@@ -50,5 +50,18 @@ Exer.make do |app|
 end
 ```
 
+Gem tested on:
+ - `Linux Mint 20.2 - Uma`
+ - `Ubuntu 20.04.4`
+ - `Ubuntu 21.10`
+
+Binaries tested on:
+ - `Windows 10 Home 64bit`
+ - `Windows 10 Pro 64bit`
+ - `Linux Mint 20.2 - Uma`
+ - `Ubuntu 20.04.4`
+ - `Ubuntu 21.10`
+ - `MacOS 11`
+ 
 # Contribution
 This is a work in progress, so please wait to establish some more stable version.
