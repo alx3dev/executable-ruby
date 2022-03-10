@@ -24,10 +24,11 @@ All you need is to run:
 
 `bin/exer`
 
-or if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby)
+or if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby/0.2.0)
 
 `exer`
 
+You can read [documentation on rubydoc](https://rubydoc.info/gems/executable-ruby)  
 
 Make your gem with executable script in `bin` directory, named same as your gem. (If your gem name is `gem-name`, create file `bin/gem-name`, without `.rb`).
 
