@@ -7,15 +7,29 @@ require_relative 'exer/make'
 
 # Build executable gem installers for Windows, Linux and Mac.
 # Go language is bundled together within the app,
-# so all you need is linux and ruby.
+# so all you need is Linux and Ruby.
+#
+# @note Do not use same name for installer-name and your-gem-binary-name.
 #
 # @see Exer::Make
 #
-# @example Build executable installers for glimmer gem
+# @example Build gem runner that will install gem if not installed
 #
-#  Exer.make('glimmer-installer') do |app|
-#    app.add :gem_install, 'glimmer-dsl-libui'
-#  end
+#   # make gem with binary named same as gem
+#   # upload it to rubygems
+#   # executable will install gem if not installed, and open it
+#   Exer.make do |app|
+#     app.filename = 'my_gem run' # do not use same name as gem
+#     app.add :gem_run, 'my_gem'
+#   end
+#
+# @example Build executable installers for gem
+#
+#   Exer.make('my_gem install') do |app|
+#     # if you only make installer, add wait_for_enter
+#     app.add :gem_install, 'my_gem'
+#     app.wait_for_enter
+#   end
 #
 module Exer
   # Class method #make is a shortcut to initialize new Maker instance,
@@ -26,8 +40,8 @@ module Exer
   # @example Build Windows installer for gem 'my_gem'
   #
   #   Exer.make(exclude: [:windows, :darwin]) do |build|
-  #     build.filename = 'my_gem'
-  #     build.add :gem_install, 'my_gem'
+  #     build.filename = 'my_gem_name'
+  #     build.add :gem_install, 'my_gem_name'
   #   end
   #
   # @param [Hash] options Optional.

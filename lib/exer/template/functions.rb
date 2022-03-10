@@ -10,7 +10,20 @@ module Template
   GO_PACKAGES =
     <<~CODE
       package main
-      import ("bufio"; "bytes"; "fmt"; "os"; "os/exec")
+      import ("bytes"; "fmt"; "os"; "os/exec"; "syscall"; "runtime";)
+    CODE
+
+  BINARY_EXIST =
+    <<~CODE
+      func BinaryExist(binary string) (string, error) {
+        path, err := exec.LookPath(binary)
+        if err == nil {
+            fmt.Println("[+] Found", binary, "binary:", path)
+        } else {
+            fmt.Println("[-]", binary, "binary not found in path")
+        }
+        return path, err
+      }
     CODE
 
   RUBY_EXIST =
@@ -56,13 +69,13 @@ module Template
   GEM_INSTALL =
     <<~CODE
       func GemInstall(gem string) (string, string, error) {
-        _, gerr := BinaryExist("gem")
+        _, gerr := exec.LookPath("gem")
         if gerr != nil { fmt.Println(gerr); os.Exit(1) }
 
         var stdout bytes.Buffer
         var stderr bytes.Buffer
 
-        cmd := exec.Command("gem", "install", gem)
+        cmd := exec.Command("gem", "install", gem, "--no-doc")
 
         cmd.Stdout = &stdout
         cmd.Stderr = &stderr
@@ -80,16 +93,24 @@ module Template
       }
     CODE
 
-  BINARY_EXIST =
+  GEM_RUN =
     <<~CODE
-      func BinaryExist(binary string) (string, error) {
-        path, err := exec.LookPath(binary)
-        if err == nil {
-            fmt.Println("[+] Found", binary, "binary:", path)
-        } else {
-            fmt.Println("[-]", binary, "binary not found in path")
+      func GemRun(command string) {
+        envs := os.Environ()
+        cpath, cerr := BinaryExist(command)
+        if cerr != nil { GemInstall(command); cpath, cerr = BinaryExist(command) }
+
+        os := runtime.GOOS
+        switch os {
+        case "windows":
+            cmd := exec.Command("cmd", "/c", "start", cpath)
+            err := cmd.Run()
+            if err != nil { fmt.Println(err) }
+        case "linux", "darwin":
+            com := []string{command}
+            err := syscall.Exec(cpath, com, envs)
+            if err != nil { fmt.Println(err) }
         }
-        return path, err
       }
     CODE
 
@@ -99,6 +120,7 @@ module Template
     binary_exist: BINARY_EXIST,
     ruby_exist: RUBY_EXIST,
     ruby_exec: RUBY_EXEC,
-    gem_install: GEM_INSTALL
+    gem_install: GEM_INSTALL,
+    gem_run: GEM_RUN
   }.freeze
 end

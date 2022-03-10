@@ -8,11 +8,10 @@ Gem::Specification.new do |spec|
   spec.authors = ['alx3dev']
   spec.email = ['alx3dev@gmail.com']
 
-  spec.summary = 'Cross-compile executables to install ruby-gems.'
+  spec.summary = 'Cross-compile executables to install and/or run ruby-gems.'
 
   spec.description = <<~DESC
-    Cross-compile "ruby-gem-install" executables for three major platforms (Windows, Linux and Mac).
-    Golang is bundled together with gem, so you don't need it on the system.
+    Cross compile executables to install and/or run ruby gems from rubygems.org.
   DESC
 
   spec.homepage = 'https://www.github.com/alx3dev/executable-ruby'
@@ -31,10 +30,9 @@ Gem::Specification.new do |spec|
     lib/exer/template/functions.rb
     lib/exer/template/main.rb
     README.md
+    LICENSE
     Gemfile
     executable-ruby.gemspec
-    LICENSE
-    CHANGELOG.md
   ]
 
   spec.bindir = 'bin'
