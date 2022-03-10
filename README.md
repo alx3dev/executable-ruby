@@ -48,7 +48,13 @@ Exer.make do |app|
   app.add :gem_install, 'my-gem-name'
   app.wait_for_enter
 end
-```
+```  
+
+# License
+
+Executable Ruby is registered under the GPL-v3 license, but you are also allowed to **build binaries with this gem** for `MIT`, `Apache2` and `OpenBSD` license. You are not allowed to use source-code or it's parts in your application (unless licensed under GPL), but you are allowed to build static binaries for your `MIT, Apache2 or OpenBSD` licensed gem.
+
+# Tested on:
 
 Gem tested on:
  - `Linux Mint 20.2 - Uma`
