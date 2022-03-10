@@ -1,6 +1,7 @@
 # executable-ruby
 
-Cross-compile executables from [rubygems](https://rubygems.org). This is early development, I will do my best to find some free time to continue working on this (to allow script-installers). For now you can make your gem with executable file, and upload it to rubygems. Than you can make static binary in one-line.
+Cross-compile executables from [rubygems](https://rubygems.org).  
+This is early development, I will do my best to find some free time to continue working on this (to allow script-installers). For now you can make your gem with executable file, and upload it to rubygems. Than you can make static binary in one-line.
 
 # How to install
 
@@ -17,10 +18,17 @@ If you install gem from ruby-gems, you can run:
 `gem install executable-ruby`  
 `exer --getgo`
 
+If you don't want to install golang, you can use system installed one:
+
+```ruby  
+Exer.system_golang = true
+```
+
 # How to use
 
-Golang is bundled together with gem, and will be removed on uninstall.  
-All you need is to run:  
+You can read [documentation on rubydoc](https://rubydoc.info/gems/executable-ruby)  
+
+To start gem run:  
 
 `bin/exer`
 
@@ -28,7 +36,6 @@ or if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby/0
 
 `exer`
 
-You can read [documentation on rubydoc](https://rubydoc.info/gems/executable-ruby)  
 
 Make your gem with executable script in `bin` directory, named same as your gem. (If your gem name is `gem-name`, create file `bin/gem-name`, without `.rb`).
 

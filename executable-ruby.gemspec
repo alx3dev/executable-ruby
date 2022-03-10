@@ -11,7 +11,9 @@ Gem::Specification.new do |spec|
   spec.summary = 'Cross-compile executables to install and/or run ruby-gems.'
 
   spec.description = <<~DESC
-    Cross compile executables to install and/or run ruby gems from rubygems.org.
+    Cross compile executables to install and/or run ruby gem from rubygems.org.
+    Comes with bundled golang, or you can use your system-installed one.
+    Check if gem is installed, install if not and run its binary (bin/gem_name).
   DESC
 
   spec.homepage = 'https://www.github.com/alx3dev/executable-ruby'
@@ -20,7 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = spec.homepage
-  spec.metadata['changelog_uri'] = "#{spec.homepage}/CHANGELOG.md"
+  spec.metadata['documentation_uri'] = "https://rubydoc.info/#{spec.name}/#{spec.version}"
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.files = %w[

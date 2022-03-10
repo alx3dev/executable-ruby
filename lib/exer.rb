@@ -55,4 +55,14 @@ module Exer
     yield(maker) if block_given?
     maker.build options[:exclude]
   end
+
+  class << self
+    def system_golang?
+      @system_golang == true
+    end
+
+    def system_golang=(arg)
+      @system_golang = arg
+    end
+  end
 end

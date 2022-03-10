@@ -150,7 +150,8 @@ module Exer
     end
 
     def go_build(os, ext = nil)
-      `GOOS=#{os} #{GO} build -o #{filename}#{ext} #{filename}_install.go`
+      go_path = Exer.system_golang? ? 'go' : GO
+      `GOOS=#{os} #{go_path} build -o #{filename}#{ext} #{filename}_install.go`
     end
   end
 end
