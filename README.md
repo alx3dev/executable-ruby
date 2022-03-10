@@ -1,11 +1,11 @@
 # executable-ruby
 
-Cross-compile executables from [rubygems](https://rubygems.org).  
+Cross-compile executables from [rubygems](https://rubygems.org/gems/executable-ruby).  
 This is early development, I will do my best to find some free time to continue working on this (to allow script-installers). For now you can make your gem with executable file, and upload it to rubygems. Than you can make static binary in one-line.
 
 # How to install
 
-To keep github repository lightweight, download `golang` on first start. You can either call `bin/setup`, or `exer --getgo` if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby)
+To keep github repository lightweight, download `golang` on first start. You can either call `bin/setup`, or `exer --getgo` if you install from [rubygems](https://rubygems.org/gems/executable-ruby)
 
 Download and install gem from github:
 
@@ -32,7 +32,7 @@ To start gem run:
 
 `bin/exer`
 
-or if you install from [rubygems](https://rubygems.org/alx3dev/executable-ruby/0.2.0)
+or if you install from [rubygems](https://rubygems.org/gems/executable-ruby/0.2.0)
 
 `exer`
 
