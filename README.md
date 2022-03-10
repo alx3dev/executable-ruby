@@ -78,4 +78,5 @@ Binaries tested on:
  - `MacOS 11`
  
 # Contribution
-This is a work in progress, so please wait to establish some more stable version.
+This is a work in progress, so please wait to establish some more stable version.  
+If you have a feature request, please open an issue, and I will do my best to add it.
