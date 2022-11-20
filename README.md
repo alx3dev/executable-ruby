@@ -1,3 +1,5 @@
+11.20.2022 -> UNDER ACTIVE DEVELOPMENT -> Preparing new updates
+
 # executable-ruby
 
 Cross-compile executables from [rubygems](https://rubygems.org/gems/executable-ruby).  
